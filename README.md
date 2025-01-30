@@ -21,6 +21,7 @@ Para este trabajo se usarán las siguientes tecnologías y librerias:
 
 Para este proyecto la intención principal será llevar el siguiente esquema de archivos y ficheros:
 
+```bash
 📂 TFG_ocr_matriculas
 │── 📂 src               # Código fuente
 │   ├── capture_cam.py   # Captura de la imagen
