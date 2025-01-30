@@ -1,10 +1,10 @@
 # 🚘 TFG_ocr_matriculas 
 
-¡Buenas a todos los desarrolladores y usuarios que visiten este repositorio! 😄 Aquí estaré trabajando sobre mi trabajo de fin del grado de desarrollo de aplicaciones web, en el que se usaré **ocr** para el **reconocimiento de matriculas en una puerta de un garaje** 🎥. También implementaré una **base de datos para almacenar las matriculas** de clientes ficticios 💿, los cuales pueden o no contar con los derechos necesarios para que la puerta se abra, mi intención también es hacer una pequeña **interfaz grafica** 💻, donde se pueda visualizar más comodamente las matriculas y en tiempo real y sus permisos.
+¡Buenas a todos los desarrolladores y usuarios que visiten este repositorio! 😄 Aquí estaré trabajando sobre mi proyecto de fin del grado en desarrollo de aplicaciones web, en el que usaré **ocr** para el **reconocimiento de matriculas en una barrera de un garaje** 🎥. También implementaré una **base de datos para almacenar las matriculas** de clientes ficticios 💿, los cuales pueden o no contar con los derechos necesarios para que la puerta se abra, el proyecto estará destinado a una barrera de parking publico de pago que al mismo tiempo es compartido por propietarios de plazas de garaje, mi intención también es hacer una pequeña **interfaz grafica** 💻, donde se pueda visualizar más comodamente las matriculas y en tiempo real y sus permisos.
 
 ## 📱 Tecnologías 
 
-Para este trabajo se usarán las siguientes tecnologías y librerias: 
+Para este proyecto se usarán las siguientes tecnologías y librerias: 
 
 - Python 🐍: Se usará como lenguaje de programación para todo el proyecto, por su versatilidad y gran cantidad de librerias y documentación, aparte de por su sencilles de uso
 - EasyOCR 🔍: Diría que es la biblioteca de reconocimiento óptico de caracteres (OCR) por exelencia de Python por su sencillez, permite extraer texto de imágenes con modelos de deep learning, y para eso eso la usaremos.
