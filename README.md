@@ -33,6 +33,7 @@ Para este proyecto la intención principal será llevar el siguiente esquema de 
 │── README.md            # Documentación principal
 │── requirements.txt     # Librerías necesarias
 │── config.ini           # Configuración del sistema
+```
 
 ## 🚀 Instalación y Configuración
 
