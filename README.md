@@ -17,7 +17,7 @@ Para este trabajo se usarán las siguientes tecnologías y librerias:
 
 >Estas tecnologias y librerias han sido elegidas principalamente para el proyecto, pero pueden variar a lo largo del desarrollo ya que pueden surgir necesidades o dificultades especificas en algun punto del proceso
 
-Quisiera incluir en las tecnologías el uso de los modelos de inteligencía artificial de lenguaje natural como pueden ser **Chat-GPT** y **Deepseek**, con la intención de contrastar la información encontrada en páginas web revisadas para este proyecto, pero sobre todo para la explicación de como usar determinadas funciones especificas encontradas en la documentación oficial de las librerias. La que la información dada por estos modelos de IA contrastada adecuadamente con documentaciones y proyectos de codigo abierto ajenos a mi, está resultando de muy gran ayuda, con explicaciones y ejemplos.
+Quisiera incluir en las tecnologías el uso de los modelos de inteligencía artificial de lenguaje natural como pueden ser **Chat-GPT** y **Deepseek**, con la intención de contrastar la información encontrada en páginas web revisadas para este proyecto, pero sobre todo para la explicación de como usar determinadas funciones especificas encontradas en la documentación oficial de las librerias. Ya que la información dada por estos modelos de IA contrastada adecuadamente con documentaciones y proyectos de codigo abierto ajenos a mi, está resultando de muy gran ayuda, con explicaciones y ejemplos.
 
 ## 📂 Estructura del proyecto
 
