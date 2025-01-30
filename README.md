@@ -43,6 +43,8 @@ Aquí detallaremos que deberemos hacer si queremos replicar este proyecto en un 
 
 ### 1️⃣ Clonar repositorio
 
+
+
 ```bash
 git clone https://github.com/VictorGutierrez610/TFG_ocr_matriculas.git
 cd TFG_ocr_matriculas
@@ -50,5 +52,21 @@ cd TFG_ocr_matriculas
 
 ### 2️⃣ Instalar dependencias 
 
-para instalar las dependencias necesarias para ejecutar este proyecto en cada entorno local, usaremos el archivo `requiremenst.txt` en el cual proximamente se detallarán todas las librerias utilizadas en él.
+para instalar las dependencias necesarias para ejecutar este proyecto en cada entorno local, usaremos el archivo `requiremenst.txt` en el cual proximamente se detallarán todas las librerías utilizadas en él.
+
+###  Configurar la base de datos
+
+Esta será la explicación inicial de la base de datos planteada hasta ahora, aun qué en el futuro del proyecto puede variar según las necesaidades. A la BBDD la llamaremos parking_system, y constará principalmente de una única tabla llamada `vehiculos` que tendrá 4 campos (columnas), en los que incluiremos un `id` como clave primaria autoincremental, la `matricula` del vehículo que será un cadena de caractares que en un principio ajustaremos su tamaño a un *VARCHAR(10)* y además no podrá ser nulo ya que no tendría sentido crear un registro (fila) sin una matricula asociada, el nombre del `propieatrio` que será un *VARCHAR(100)* inicialmente y este si podrá ser nulo, ya que el proyecto está pensado para que funcione en un garaje compartido entre "parking público" y propietarios de plazas de garaje, y por último crearemos un campo llamado `permiso` para indicar si el vehiculo tiene o no permiso para la salida del parking, esté permiso estará asociado al pago realizado o no del ticket del cliente.
+
+```bash
+CREATE DATABASE parking_system;
+USE parking_system;
+
+CREATE TABLE vehiculos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    matricula VARCHAR(10) UNIQUE NOT NULL,
+    propietario VARCHAR(100),
+    permiso BOOLEAN NOT NULL DEFAULT FALSE
+);
+```
 
