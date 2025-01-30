@@ -11,7 +11,7 @@ Para este proyecto se usarán las siguientes tecnologías y librerias:
 - OpenCV 📷: Es una biblioteca de visión por computadora que es usada para procesar imágenes y videos, la usaremos precisamente para proesar la imagen de las matriculas a travez de filtros y contrastes para facilitar el trabajo y mejorar la precision del sistema de OCR.
 - NumPy 🔢: una biblioteca para cálculos numéricos y manipulación de matrices, ampliamente conocida entre desarrolladores python, en nuestro caso la usaremos brevemente para detectar el alto y ancho de la matricula del vehículo.
 - Imutils 📏: `Es un conjunto de funciones útiles para facilitar el manejo de las imágenes con OpenCV, como redimensionamiento y rotación, solo la usamos en una ocación a si que es posible que busquemos una solucion futura.`
-- Matplotlib 📊: Es una biblioteca usada para visualización de datos, nosotros la usaremos para visualizar la imagen de la matricula ya procesada, tal vez más adelante nos sea precindible.
+- Matplotlib 📊: `Es una biblioteca usada para visualización de datos, nosotros la usaremos para visualizar la imagen de la matricula ya procesada, tal vez más adelante nos sea precindible.`
 - Tkinter 🖥️: Esta es la ultima biblioteca que usaremos, la implementaremos para la interfaz gráfica de usuario (GUI), a la hora de crear la aplicación de escritorio.
 - MySQL 🗄️: MySQL es un sistema de gestión de bases de datos relacionales, es usado para almacenar y gestionar datos de manera eficiente y conocido mundialmente, nosotros lo usaremos para rear y gestionar facilmente la base de dtos de matriculas y clientes, así como la hora de entrada y/o salida de los vehiculos.
 
