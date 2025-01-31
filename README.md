@@ -55,7 +55,7 @@ para instalar las dependencias necesarias para ejecutar este proyecto en cada en
 
 ### 3️⃣ Configurar la base de datos
 
-Esta será la explicación inicial de la base de datos planteada hasta ahora, aun qué en el futuro del proyecto puede variar según las necesaidades. A la BBDD la llamaremos `parking_system`, y constará principalmente de una única tabla llamada `vehiculos` que tendrá 4 campos (columnas), en los que incluiremos un `id` como clave primaria autoincremental, la `matricula` del vehículo que será un cadena de caractares que en un principio ajustaremos su tamaño a un *VARCHAR(10)* y además no podrá ser nulo ya que no tendría sentido crear un registro (fila) sin una matricula asociada, el nombre del `propietario` que será un *VARCHAR(100)* inicialmente y este si podrá ser nulo, ya que el proyecto está pensado para que funcione en un garaje compartido entre "parking público" y propietarios de plazas de garaje, y por último crearemos un campo llamado `permiso` para indicar si el vehiculo tiene o no permiso para la salida del parking, esté permiso estará asociado al pago realizado o no del ticket del cliente.
+Esta será la explicación inicial de la base de datos planteada hasta ahora, aun qué en el futuro del proyecto puede variar según las necesaidades. A la BBDD la llamaremos `parking_system`, y constará principalmente de una única tabla llamada `vehiculos` que tendrá 4 campos (columnas), en los que incluiremos un `id` como clave primaria autoincremental, la `matricula` del vehículo que será un cadena de caractares que en un principio ajustaremos su tamaño a un *VARCHAR(10)* y además no podrá ser nulo ya que no tendría sentido crear un registro (fila) sin una matricula asociada, el nombre del `propietario` que será un *VARCHAR(100)* inicialmente y este si podrá ser nulo, ya que el proyecto está pensado para que funcione en un garaje compartido entre "parking público" y propietarios de plazas de garaje, y por último crearemos un campo llamado `permiso` para indicar si el vehiculo tiene o no permiso para la salida del parking, esté permiso estará asociado al pago realizado o no del ticket del cliente y será un tipo de dato *tinyint* donde 0 significará negativo y 1 positivo.
 
 ```bash
 CREATE DATABASE parking_system;
@@ -71,4 +71,13 @@ CREATE TABLE `parking_system`.`vehiculos` (
 
 );
 ```
+
+---
+#### Creación de la BBDD
+![Captura de pantalla 2025-01-31 175126](https://github.com/user-attachments/assets/d2cc879d-ec51-42b4-a9bc-61bd9bb90bd6)
+
+#### Creación de la tabla
+![Captura de pantalla 2025-01-31 180530](https://github.com/user-attachments/assets/8884a98d-be7d-4aed-aa69-cedbce9c9fae)
+
+---
 
