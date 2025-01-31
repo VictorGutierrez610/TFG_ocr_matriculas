@@ -61,11 +61,14 @@ Esta será la explicación inicial de la base de datos planteada hasta ahora, au
 CREATE DATABASE parking_system;
 USE parking_system;
 
-CREATE TABLE vehiculos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    matricula VARCHAR(10) UNIQUE NOT NULL,
-    propietario VARCHAR(100),
-    permiso BOOLEAN NOT NULL DEFAULT FALSE
+CREATE TABLE `parking_system`.`vehiculos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `matricula` VARCHAR(10) NOT NULL,
+  `propietario` VARCHAR(100) NULL,
+  `permiso` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `matricula_UNIQUE` (`matricula` ASC) VISIBLE);
+
 );
 ```
 
