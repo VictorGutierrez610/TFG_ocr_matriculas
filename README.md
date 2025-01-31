@@ -43,11 +43,10 @@ Aquí detallaremos que deberemos hacer si queremos replicar este proyecto en un 
 
 ### 1️⃣ Clonar repositorio
 
-
+Para clonar el repositorio se debe usar la siguiente url:
 
 ```bash
-git clone https://github.com/VictorGutierrez610/TFG_ocr_matriculas.git
-cd TFG_ocr_matriculas
+https://github.com/VictorGutierrez610/TFG_ocr_matriculas.git
 ```
 
 ### 2️⃣ Instalar dependencias 
