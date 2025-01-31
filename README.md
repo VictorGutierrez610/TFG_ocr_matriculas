@@ -39,7 +39,7 @@ Para este proyecto la intención principal será llevar el siguiente esquema de 
 
 ## 🚀 Instalación y Configuración
 
-Aquí detallaremos que deberemos hacer si queremos replicar este proyecto en un entorno local, para ello comento que se estoy trabajando en mi entorno de desarrollo principal que es un ordenador portatil con Windows 11 con un procesador ryzen 5 serie 7520U con gráfica integrada, con 16 GB de memoria RAM, a esto me gustaría hacer el inciso que para las tareas de ocr e inteligencia artificial normalmente primero desarrollo el codigo y las pruebas en mi ordenador de escritorio con Windows 10, ryzen 5 5600X, una tarjeta gráfica 4060 super y 32 GB de RAM, ya sea en local o con conección remota para el uso de recursos.
+Aquí detallaremos que deberemos hacer si queremos replicar este proyecto en un entorno local, para ello comento que se estoy trabajando en mi entorno de desarrollo principal que es un ordenador portatil con Windows 11 con un procesador ryzen 5 serie 7520U con gráfica integrada, con 16 GB de memoria RAM, a esto me gustaría hacer el inciso que para las tareas de ocr e inteligencia artificial normalmente primero desarrollo el codigo y las pruebas en mi ordenador de escritorio con Windows 10, ryzen 5 5600X, una tarjeta gráfica 4060 super y 32 GB de RAM, ya sea en local o con conexión remota para el uso de recursos.
 
 ### 1️⃣ Clonar repositorio
 
