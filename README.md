@@ -81,11 +81,5 @@ CREATE TABLE `parking_system`.`vehiculos` (
 
 ---
 
-
-.
-
-
-
-
-
-....
+ 
+ esto es una simple prueba de sincronización con GitHub
