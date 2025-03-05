@@ -78,7 +78,7 @@ class ocr:
 
 # Uso de la clase
 if __name__ == '__main__':
-    image_cap = 'data\image2.jpg'
+    image_cap = '\\DESKTOP-2EAIG98\Estudios\Informática\HDD Visual Studio Proyectos\Proyecto TGF\repositorio\TFG_ocr_matriculas\data\image1.jpg'
 
     recognizer = ocr(image_cap)  # Crear el objeto
     recognizer.load_image()                  # Cargar imagen
