@@ -10,7 +10,7 @@ class camera:
             print('No se puede abrir la camara')
             exit()
         else:
-            print('capurando cam')
+            print('Capturando cam ... Presione "q" para salir')
 
         while True: # capturamos los fotogramas de  la camara
             ret, frame = image_cap.read()
