@@ -77,8 +77,7 @@ class CameraApp:
                 recognizer.detect_plate(edged)
                 recognizer.recognize_text()
 
-                # Mostrar el texto detectado en la consola
-                print(f"Texto detectado: {recognizer.text}")
+
             except Exception as e:
                 print(f"Error en OCR: {e}")
 
