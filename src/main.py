@@ -32,6 +32,10 @@ class CameraApp:
         self.video_label = tk.Label(root)
         self.video_label.pack(expand=True, fill="both")
 
+        # Crear un widget para mostrar el texto detectado
+        self.text_label = tk.Label(root, text="", font=("Arial", 16), fg="blue")
+        self.text_label.pack(pady=10)
+
     def start_camera(self):
         if not self.camera_running:
             # Reiniciar la instancia de la cámara
@@ -77,9 +81,13 @@ class CameraApp:
                 recognizer.detect_plate(edged)
                 recognizer.recognize_text()
 
+                # Actualizar el texto detectado en la etiqueta
+                detected_text = recognizer.text if recognizer.text else "No se detectó texto"
+                self.text_label.config(text=f"Matrícula detectada: {detected_text}")
 
             except Exception as e:
                 print(f"Error en OCR: {e}")
+                self.text_label.config(text="Error en OCR")
 
             # Llamar a esta función de nuevo después de 1 segundo
             self.root.after(1000, self.run_ocr_with_delay)
