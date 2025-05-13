@@ -1,7 +1,10 @@
+import os
+import shutil  # Para eliminar la carpeta temporal
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import capture_cam
+import ocr
 import cv2
 
 class CameraApp:
@@ -10,8 +13,13 @@ class CameraApp:
         self.root.title("Camera Interface")
         self.root.geometry("800x600")  # Ajustar el tamaño de la ventana
 
-        self.camera = capture_cam.camera_instance
+        self.camera = None  # Inicializar la cámara como None
         self.camera_running = False
+        self.ocr_running = False
+
+        # Crear carpeta para imágenes temporales en el directorio del proyecto
+        self.temp_dir = os.path.join(os.path.dirname(__file__), "temp_images")
+        os.makedirs(self.temp_dir, exist_ok=True)
 
         # Crear botones
         self.start_button = tk.Button(root, text="Start Camera", command=self.start_camera, width=20)
@@ -26,8 +34,15 @@ class CameraApp:
 
     def start_camera(self):
         if not self.camera_running:
+            # Reiniciar la instancia de la cámara
+            self.camera = capture_cam.Camera(cv2.VideoCapture(0))
+            if not self.camera.image_cap.isOpened():
+                messagebox.showerror("Error", "No se puede abrir la cámara.")
+                return
             self.camera_running = True
+            self.ocr_running = True
             self.update_frame()
+            self.run_ocr_with_delay()
 
     def update_frame(self):
         if self.camera_running:
@@ -45,11 +60,42 @@ class CameraApp:
                 messagebox.showerror("Error", str(e))
                 self.camera_running = False
 
+    def run_ocr_with_delay(self):
+        if self.ocr_running:
+            try:
+                # Capturar un fotograma de la cámara
+                frame = self.camera.get_frame()
+
+                # Guardar el fotograma como una imagen temporal en la carpeta temp_images
+                temp_image_path = os.path.join(self.temp_dir, "temp_frame.jpg")
+                cv2.imwrite(temp_image_path, frame)
+
+                # Ejecutar OCR en el fotograma capturado
+                recognizer = ocr.ocr(temp_image_path)
+                recognizer.load_image()
+                edged = recognizer.preprocess_image()
+                recognizer.detect_plate(edged)
+                recognizer.recognize_text()
+
+                # Mostrar el texto detectado en la consola
+                print(f"Texto detectado: {recognizer.text}")
+            except Exception as e:
+                print(f"Error en OCR: {e}")
+
+            # Llamar a esta función de nuevo después de 1 segundo
+            self.root.after(1000, self.run_ocr_with_delay)
+
     def close_camera(self):
         if self.camera_running:
             self.camera_running = False
+            self.ocr_running = False
             self.camera.release()
             self.video_label.configure(image="")
+
+            # Eliminar todos los archivos en la carpeta temp_images
+            if os.path.exists(self.temp_dir):
+                shutil.rmtree(self.temp_dir)
+                os.makedirs(self.temp_dir, exist_ok=True)  # Recrear la carpeta vacía
         else:
             messagebox.showinfo("Info", "The camera is not running.")
 
