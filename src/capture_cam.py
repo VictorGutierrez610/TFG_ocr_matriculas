@@ -24,7 +24,7 @@ class camera:
         self.image_cap.release()
         cv2.destroyAllWindows()
 
-image_cap = cv2.VideoCapture(1) # variable que apunta a la posicion de la camara a abrir (0: cam portatil, 1: cam USB)
+image_cap = cv2.VideoCapture(0) # variable que apunta a la posicion de la camara a abrir (0: cam portatil, 1: cam USB)
 
 capture_image = camera(image_cap) # creamos el objeto
 capture_image.capture() # cargamos la imagen de la captura de la camara
