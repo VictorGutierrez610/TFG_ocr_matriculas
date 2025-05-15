@@ -10,7 +10,7 @@ class CameraApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Camera Interface")
-        self.root.geometry("800x800")  # Ajustar el tamaño de la ventana
+        self.root.geometry("800x700")  # Ajustar el tamaño de la ventana
 
         self.camera = None  # Inicializar la cámara como None
         self.camera_running = False
