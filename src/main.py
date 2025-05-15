@@ -70,13 +70,9 @@ class CameraApp:
                 # Capturar un fotograma de la cámara
                 frame = self.camera.get_frame()
 
-                # Guardar el fotograma como una imagen temporal en la carpeta temp_images
-                temp_image_path = os.path.join(self.temp_dir, "temp_frame.jpg")
-                cv2.imwrite(temp_image_path, frame)
-
-                # Ejecutar OCR en el fotograma capturado
-                recognizer = ocr.ocr(temp_image_path)
-                recognizer.load_image()
+                # Procesar el frame directamente, sin guardarlo
+                recognizer = ocr.ocr(frame)
+                recognizer.load_image()  # Ya no necesita ruta
                 edged = recognizer.preprocess_image()
                 recognizer.detect_plate(edged)
                 recognizer.recognize_text()
@@ -89,8 +85,8 @@ class CameraApp:
                 print(f"Error en OCR: {e}")
                 self.text_label.config(text="Error en OCR")
 
-            # Llamar a esta función de nuevo después de 1 segundo
-            self.root.after(1000, self.run_ocr_with_delay)
+            # Llamar a esta función de nuevo después de 100 ms
+            self.root.after(100, self.run_ocr_with_delay)
 
     def close_camera(self):
         if self.camera_running:
