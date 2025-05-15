@@ -1,25 +1,20 @@
-import os
-import shutil  # Para eliminar la carpeta temporal
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import capture_cam
 import ocr
 import cv2
+import threading
 
 class CameraApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Camera Interface")
-        self.root.geometry("800x600")  # Ajustar el tamaño de la ventana
+        self.root.geometry("800x800")  # Ajustar el tamaño de la ventana
 
         self.camera = None  # Inicializar la cámara como None
         self.camera_running = False
         self.ocr_running = False
-
-        # Crear carpeta para imágenes temporales en el directorio del proyecto
-        self.temp_dir = os.path.join(os.path.dirname(__file__), "temp_images")
-        os.makedirs(self.temp_dir, exist_ok=True)
 
         # Crear botones
         self.start_button = tk.Button(root, text="Start Camera", command=self.start_camera, width=20)
@@ -66,27 +61,26 @@ class CameraApp:
 
     def run_ocr_with_delay(self):
         if self.ocr_running:
-            try:
-                # Capturar un fotograma de la cámara
-                frame = self.camera.get_frame()
+            # Lanzar el OCR en un hilo aparte
+            threading.Thread(target=self.run_ocr_on_frame, daemon=True).start()
+            # Programar la siguiente llamada
+            self.root.after(1000, self.run_ocr_with_delay)  # 1 segundo entre OCRs
 
-                # Procesar el frame directamente, sin guardarlo
-                recognizer = ocr.ocr(frame)
-                recognizer.load_image()  # Ya no necesita ruta
-                edged = recognizer.preprocess_image()
-                recognizer.detect_plate(edged)
-                recognizer.recognize_text()
+    def run_ocr_on_frame(self):
+        try:
+            frame = self.camera.get_frame() # Capturar un fotograma de la cámara
+            recognizer = ocr.ocr(frame) # Procesar el frame directamente
+            recognizer.load_image() # Cargar la imagen
+            edged = recognizer.preprocess_image() # Preprocesar la imagen
+            recognizer.detect_plate(edged) # Detectar la matrícula
+            recognizer.recognize_text()  # Leer el texto de la imagen recortada
 
-                # Actualizar el texto detectado en la etiqueta
-                detected_text = recognizer.text if recognizer.text else "No se detectó texto"
-                self.text_label.config(text=f"Matrícula detectada: {detected_text}")
-
-            except Exception as e:
-                print(f"Error en OCR: {e}")
-                self.text_label.config(text="Error en OCR")
-
-            # Llamar a esta función de nuevo después de 100 ms
-            self.root.after(100, self.run_ocr_with_delay)
+            detected_text = recognizer.text if recognizer.text else "No se detectó texto"
+        except Exception as e:
+            print(f"Error en OCR: {e}")
+            detected_text = "Error en OCR"
+        # Actualizar la etiqueta en el hilo principal
+        self.root.after(0, lambda: self.text_label.config(text=f"Matrícula detectada: {detected_text}"))
 
     def close_camera(self):
         if self.camera_running:
@@ -94,11 +88,6 @@ class CameraApp:
             self.ocr_running = False
             self.camera.release()
             self.video_label.configure(image="")
-
-            # Eliminar todos los archivos en la carpeta temp_images
-            if os.path.exists(self.temp_dir):
-                shutil.rmtree(self.temp_dir)
-                os.makedirs(self.temp_dir, exist_ok=True)  # Recrear la carpeta vacía
         else:
             messagebox.showinfo("Info", "The camera is not running.")
 
