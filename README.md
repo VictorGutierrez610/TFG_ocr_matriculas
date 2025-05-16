@@ -121,15 +121,15 @@ Este archivo actúa como el núcleo de la aplicación. Crea una interfaz gráfic
 - Coordinar el flujo de vídeo y OCR de forma paralela y sin bloquear la interfaz.
 
 #### 2. `capture_cam.py` – **Captura de Vídeo desde la Cámara**
-Contiene la clase `Camera`, encargada de gestionar el acceso a la webcam mediante OpenCV. Su función principal es proporcionar fotogramas individuales a `main.py` de forma eficiente para su visualización y procesamiento.
+Contiene la clase `🔠 Camera`, encargada de gestionar el acceso a la webcam mediante OpenCV. Su función principal es proporcionar fotogramas individuales a `🔰 main.py` de forma eficiente para su visualización y procesamiento.
 
 **Funciones principales:**
-- Inicializar la cámara (`cv2.VideoCapture`).
-- Obtener fotogramas en tiempo real (`get_frame()`).
-- Liberar la cámara de forma segura (`release()`).
+- Inicializar la cámara (`🔠 cv2.VideoCapture`).
+- Obtener fotogramas en tiempo real (`🔠 get_frame()`).
+- Liberar la cámara de forma segura (`🔠 release()`).
 
 #### 3. `ocr.py` – **Procesamiento de Imagen y Reconocimiento de Matrículas**
-Incluye la clase `ocr`, diseñada para recibir un fotograma, procesarlo y extraer el texto de la matrícula utilizando técnicas de visión por computador (OpenCV) y OCR (EasyOCR). El procesamiento se realiza en pasos bien definidos para mejorar la precisión.
+Incluye la clase `🔠 ocr`, diseñada para recibir un fotograma, procesarlo y extraer el texto de la matrícula utilizando técnicas de visión por computador (OpenCV) y OCR (EasyOCR). El procesamiento se realiza en pasos bien definidos para mejorar la precisión.
 
 **Funciones principales:**
 - Cargar y preprocesar la imagen (escalado, grises, bordes).
@@ -140,101 +140,105 @@ Incluye la clase `ocr`, diseñada para recibir un fotograma, procesarlo y extrae
 
 ## 📋 Resumen Detallado del Flujo y Sincronización del Programa
 
+--> archivo: 🔰
+--> clase: 🔠
+--> Método: 🔻
+
 ### 1. 🏃 Inicio y Configuración de la Interfaz
 
-- El programa comienza ejecutando `main.py`.
+- El programa comienza ejecutando `🔰 main.py`.
 - Se crea una ventana principal con **Tkinter**:
   - Título: `"Camera Interface"`
   - Tamaño: `800x700` píxeles.
 - Inicialización de variables:
-  - `self.camera`: instancia de la cámara (inicialmente `None`).
-  - `self.camera_running` y `self.ocr_running`: flags booleanos que controlan el estado de la cámara y del OCR.
+  - `🔠 self.camera`: instancia de la cámara (inicialmente `None`).
+  - `🔠 self.camera_running` y `🔠 self.ocr_running`: flags booleanos que controlan el estado de la cámara y del OCR.
 - Creación de botones:
   - **Start Camera**: inicia la cámara y el OCR.
   - **Close Camera**: detiene ambos procesos.
 - Widgets:
-  - `video_label`: muestra el vídeo en tiempo real.
-  - `text_label`: muestra el texto de la matrícula detectada.
+  - `🔠 video_label`: muestra el vídeo en tiempo real.
+  - `🔠 text_label`: muestra el texto de la matrícula detectada.
 
 ### 2. 📸 Arranque de la Cámara y Sincronización Inicial
 
 - Al pulsar **Start Camera**:
   - Se comprueba que la cámara no esté ya en uso.
-  - Se crea una instancia de `Camera` (de `capture_cam.py`) usando `cv2.VideoCapture(0)`.
+  - Se crea una instancia de `🔠 Camera` (de `🔰 capture_cam.py`) usando `🔠 cv2.VideoCapture(0)`.
   - Se valida la apertura correcta de la cámara. Si falla, se muestra un mensaje de error.
-  - Se activan las banderas `camera_running` y `ocr_running`.
+  - Se activan las banderas `🔠 camera_running` y `🔠 ocr_running`.
   - Se ejecutan:
-    - `update_frame()` → para actualizar el vídeo.
-    - `run_ocr_with_delay()` → para lanzar el OCR periódico.
+    - `🔠 update_frame()` → para actualizar el vídeo.
+    - `🔠 run_ocr_with_delay()` → para lanzar el OCR periódico.
 
 ### 3. 🎞️ Captura y Visualización de Vídeo en Tiempo Real
 
-- Método: `update_frame()`
+- Método: `🔻 update_frame()`
   - Si la cámara está activa:
-    - Se captura un fotograma con `self.camera.get_frame()`.
+    - Se captura un fotograma con `🔠 self.camera.get_frame()`.
     - El fotograma se convierte de **BGR a RGB**.
     - Se adapta la imagen para mostrarse en Tkinter.
-    - Se actualiza el widget `video_label`.
+    - Se actualiza el widget `🔠 video_label`.
     - Se programa una actualización cada **10 ms** usando:  
-      `self.root.after(10, self.update_frame)`.
+      `🔠 self.root.after(10, self.update_frame)`.
   - En caso de error (por ejemplo, desconexión), se muestra un mensaje y se detiene la actualización.
 
 ### 4. 🧠 Proceso de OCR en Paralelo
 
-- Método: `run_ocr_with_delay()`
-  - Si `ocr_running` es `True`:
-    - Se lanza un hilo (`threading.Thread`) que ejecuta `run_ocr_on_frame()`.
+- Método: `🔻 run_ocr_with_delay()`
+  - Si `🔠 ocr_running` es `True`:
+    - Se lanza un hilo (`🔠 threading.Thread`) que ejecuta `🔠 run_ocr_on_frame()`.
     - Esto permite que el OCR funcione en paralelo sin bloquear la interfaz gráfica.
     - Se reprograma el OCR para ejecutarse cada segundo con:  
-      `self.root.after(1000, self.run_ocr_with_delay)`.
+      `🔠 self.root.after(1000, self.run_ocr_with_delay)`.
 
 ### 5. 🔍 Procesamiento de Imagen y Reconocimiento de Matrícula
 
-- Método: `run_ocr_on_frame()` (ejecutado en un hilo separado)
+- Método: `🔻 run_ocr_on_frame()` (ejecutado en un hilo separado)
   - Captura el fotograma actual de la cámara.
-  - Crea una instancia de la clase `ocr` (de `ocr.py`) con el fotograma.
+  - Crea una instancia de la clase `🔠 ocr` (de `🔰 ocr.py`) con el fotograma.
   - Llama secuencialmente a los siguientes métodos:
     - `load_image()`: carga la imagen.
     - `preprocess_image()`: convierte a escala de grises, aplica filtro bilateral y bordes con **Canny**.
     - `detect_plate(edged)`: busca contornos con 4 vértices (posible matrícula), crea una máscara y recorta.
     - `recognize_text()`: usa **EasyOCR** para leer el texto.
-  - El texto detectado se guarda en `recognizer.text`.
+  - El texto detectado se guarda en `🔠 recognizer.text`.
   - Si no se detecta texto, se muestra un mensaje indicativo.
-  - El widget `text_label` se actualiza de forma segura desde el hilo principal con:  
-    `self.root.after(0, ...)`.
+  - El widget `🔠 text_label` se actualiza de forma segura desde el hilo principal con:  
+    `🔠 self.root.after(0, ...)`.
 
 ### 6. 🧬 Sincronización y Control de Estados
 
 - El flujo del vídeo y del OCR se sincroniza usando las banderas:
-  - `camera_running`
-  - `ocr_running`
-- Mientras `camera_running` sea `True`, se actualiza continuamente el vídeo.
-- Mientras `ocr_running` sea `True`, el OCR se ejecuta cada segundo en un hilo separado.
+  - `🔠 camera_running`
+  - `🔠 ocr_running`
+- Mientras `🔠 camera_running` sea `True`, se actualiza continuamente el vídeo.
+- Mientras `🔠 ocr_running` sea `True`, el OCR se ejecuta cada segundo en un hilo separado.
 - La cámara se accede de forma segura.
 - Cualquier error se notifica al usuario mediante mensajes en la interfaz.
 
 ### 7. ❌ Cierre y Liberación de Recursos
 
 - Al pulsar **Close Camera**:
-  - Se desactivan las banderas `camera_running` y `ocr_running`.
-  - Se libera la cámara con `self.camera.release()`.
+  - Se desactivan las banderas `🔠 camera_running` y `🔠ocr_running`.
+  - Se libera la cámara con `🔠 self.camera.release()`.
   - Se limpia el contenido mostrado en la interfaz.
   - Si la cámara no estaba activa, se informa al usuario.
 
 ### 8. 🧩 Resumen de la Comunicación entre Módulos
 
-- **`main.py`**
+- **`🔰 main.py`**
   - Controla la interfaz, lógica principal y sincronización.
   - Importa:
-    - `Camera` de `capture_cam.py`
-    - `ocr` de `ocr.py`
+    - `🔠 Camera` de `🔰 capture_cam.py`
+    - `🔠 ocr` de `🔰 ocr.py`
 
-- **`capture_cam.py`**
-  - Contiene la clase `Camera`:
+- **`🔰 capture_cam.py`**
+  - Contiene la clase `🔠 Camera`:
     - Métodos para capturar y liberar la cámara.
 
-- **`ocr.py`**
-  - Contiene la clase `ocr`:
+- **`🔰 ocr.py`**
+  - Contiene la clase `🔠 ocr`:
     - Métodos para:
       - Cargar imágenes.
       - Preprocesarlas.
