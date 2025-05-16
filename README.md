@@ -140,9 +140,9 @@ Incluye la clase `🔠 ocr`, diseñada para recibir un fotograma, procesarlo y e
 
 ## 📋 Resumen Detallado del Flujo y Sincronización del Programa
 
---> archivo: 🔰
---> clase: 🔠
---> Método: 🔻
+- archivo: 🔰
+- clase: 🔠
+- Método: 🔻
 
 ### 1. 🏃 Inicio y Configuración de la Interfaz
 
